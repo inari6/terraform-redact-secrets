@@ -1,8 +1,7 @@
 # terraform-redact-secrets
 redact secrets, api keys, private keys etc.. during terraform plan/apply.
 
-As a part of the terraform plan/apply, it would print all secrets (SQL passwords/api keys/private keys/certificates, etc..) which are confidential information that needs to be redacted. This can be avoided by wrapping terraform binary with a [custom bash script](./terraform.sh).
-Assuming terraform binary from Hashicorp is installed on the path `/opt/terraform`, we can wrap it with a bash script in path `/usr/local/bin/terraform`
+As a part of the terraform plan/apply, it would print all secrets (SQL passwords/api keys/private keys/certificates, etc..) which are confidential information that needs to be redacted. This can be avoided by wrapping terraform binary with a [custom bash script](./terraform.sh).Assuming terraform binary from Hashicorp is installed on the path `/opt/terraform`, we can wrap it with a bash script in path `/usr/local/bin/terraform`.
 
 As an example I tried to create an aws lambda function that has environment variables `PRIVATE_KEY` & `API_KEY` which are read from aws parameter store. 
 ps: Please store secrets as secure string in aws parameter store.
@@ -183,4 +182,4 @@ Terraform will perform the following actions:
 Plan: 2 to add, 0 to change, 0 to destroy.
 ```
 
-As you can see it from above, PRIVATE_KEY and API_KEY are redacted.
+As you can see it from above `PRIVATE_KEY` and `API_KEY` are redacted.
